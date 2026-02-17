@@ -6,21 +6,6 @@
 		background-color: #3a86ff;
 	}
 
-	input{
-		width: 100%;
-		padding: 12px 20px;
-		margin: 8px 0;
-		box-sizing: border-box;
-	}
-
-	input::placeholder {
-	  color: #d3d3d3;
-	}
-
-	.submit{
-		background-color: #6BA3E8;
-	}
-
 	.center-column{
 		width:600px;
 		margin: 20px auto;
@@ -45,16 +30,64 @@
 		border-color: #e59400;
 	}
 
-</style>
-<h1 style="text-align: center; color: #fb5607; font-size: 125px;        text-shadow: -10px 0 black, 0 10px black, 10px 0 black, 0 -10px black;
+	.tmdb-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-bottom: 16px;
+	}
 
-"><b>TO DO LIST</b></h1>
-<div  class="center-column">
-	<form method="POST" action="/">
-		{% csrf_token %}
-		{{form.title}}
-		<input class="btn btn-info" type="submit" name="Create Task">
-	</form>
+	.btn-netflix {
+		background-color: #e50914;
+		border-color: #b20710;
+		color: #fff;
+		width: 100%;
+	}
+
+	.btn-amazon {
+		background-color: #00a8e0;
+		border-color: #007ba5;
+		color: #fff;
+		width: 100%;
+	}
+
+	.btn-appletv {
+		background-color: #555;
+		border-color: #333;
+		color: #fff;
+		width: 100%;
+	}
+
+	.btn-clear {
+		background-color: #ff4444;
+		border-color: #cc0000;
+		color: #fff;
+		width: 100%;
+	}
+
+</style>
+<h1 style="text-align: center; color: #fb5607; font-size: 125px; text-shadow: -10px 0 black, 0 10px black, 10px 0 black, 0 -10px black;
+
+"><b>WATCH LIST</b></h1>
+<div class="center-column">
+	<div class="tmdb-buttons">
+		<form method="POST" action="{% url 'add_netflix' %}">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-netflix">Ajouter 10 séries Netflix à ma watchlist</button>
+		</form>
+		<form method="POST" action="{% url 'add_amazon' %}">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-amazon">Ajouter 10 séries Amazon Prime à ma watchlist</button>
+		</form>
+		<form method="POST" action="{% url 'add_appletv' %}">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-appletv">Ajouter 10 séries Apple TV+ à ma watchlist</button>
+		</form>
+		<form method="POST" action="{% url 'clear_watchlist' %}">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-clear">Vider la watchlist</button>
+		</form>
+	</div>
 
 	<div class="todo-list">
 	{% for task in tasks %}

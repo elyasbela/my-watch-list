@@ -1,0 +1,36 @@
+meta {
+  name: GET 10 séries top notées Amazon Prime Video
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{TMDB_BASE_URL}}/discover/tv
+  body: none
+  auth: bearer
+}
+
+params:query {
+  with_watch_providers: 119
+  watch_region: FR
+  sort_by: vote_average.desc
+  vote_count.gte: 200
+  page: 1
+  language: fr-FR
+}
+
+auth:bearer {
+  token: {{TMDB_BEARER_TOKEN}}
+}
+
+docs {
+  # GET 10 séries top notées sur Amazon Prime Video
+
+  Récupère les 10 meilleures séries disponibles sur **Amazon Prime Video** (provider_id: 119).
+
+  ## Paramètres clés
+  - `with_watch_providers: 119` → Amazon Prime Video (catalogue FR)
+  - `watch_region: FR` → Catalogue français
+  - `sort_by: vote_average.desc` → Triées par meilleure note
+  - `vote_count.gte: 200` → Minimum 200 votes
+}
